@@ -13,13 +13,15 @@ import javax.swing.JOptionPane;
 import ManejoExc.PasswordExcepcion;
 import ManejoExc.UserNotFoundExcepcion;
 import gui.Saludo;
-
+//Se me olvido formatear el codigo antes de subirlo, puede que presente mala indentación
 public class GestorArchivo {
+	//El siguiente metodo se encarga de agregar los nuevos usuarios al archivo
 	public static void agregarDatos (Usuario usuario) {
 		try {
 	        ArrayList<Usuario> usuarios;
 	        File archivo = new File("DBUsers.ser");
 
+		//Lectura del archivo y recuperacion de los datos en el ArrayList
 	        if (archivo.exists() && archivo.length() > 0) {
 	            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
 	                usuarios = (ArrayList<Usuario>) in.readObject();
@@ -30,9 +32,9 @@ public class GestorArchivo {
 	        } else {
 	            usuarios = new ArrayList<>();
 	        }
-
+		//Añade el nuevo usuario al ArrayList
 	       usuarios.add(usuario);
-
+		//Guarda el nuevo ArrayList que contiene la información del nuevo usuario y usuarios anteriores
 	        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("DBUsers.ser"))) {
 	            out.writeObject(usuarios);
 	        } catch (IOException e) {
@@ -42,11 +44,12 @@ public class GestorArchivo {
 	        e.printStackTrace();
 	    }
 	}
+	//El siguiente metodo se encarga de iniciar sesión 
 	public static void iniciarSesion(String correo, String contrasena) {
         try {
         	int id;
-            ArrayList<Usuario> usuarios;
-            File archivo = new File("DBUsers.ser");
+            	ArrayList<Usuario> usuarios;
+            	File archivo = new File("DBUsers.ser");
 
             if (archivo.exists() && archivo.length() > 0) {
                 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
@@ -58,7 +61,11 @@ public class GestorArchivo {
             } else {
                 usuarios = new ArrayList<>();
             }
-
+	/*
+ 	Luego de leer el archivo y almacenar los datos tal como el metodo anterior, el programa empieza a recorrer el ArrayList
+  	buscando un correo que coincida con el correo que se le paso como parametro, si el programa encuentra una coincidencia, 
+   	pasa a evaluar la contraseña; si la contraseña es correcta guarda la posicion del usuario y crea la ventana "Saludo".
+	*/
             for (int i = 0; i < usuarios.size(); i++) {
                 Usuario u = usuarios.get(i);
                 if (u.getEmail().equals(correo)) {
