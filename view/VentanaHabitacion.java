@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.EventQueue;
 
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kernel.CalculadoraPrecios;
-import kernel.Usuario;
+import logic.CalculadoraPrecios;
+import logic.Usuario;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-public class Saludo extends JFrame {
+public class VentanaHabitacion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -38,7 +38,7 @@ public class Saludo extends JFrame {
 	 * Create the frame.
 	 */
     //Falta añadir el ID o el tipo de la habitacón para obtener la imagen y el precio por noche
-	public Saludo(int id, ArrayList<Usuario> usuarios, LocalDate fechaInicio, LocalDate fechaFin) {
+	public VentanaHabitacion(int id, ArrayList<Usuario> usuarios, LocalDate fechaInicio, LocalDate fechaFin) {
 		// Operaciones de inicio de ventana
 		
 		Usuario current = usuarios.get(id); //Borrar luego
